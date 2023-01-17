@@ -1,4 +1,5 @@
-import { Container, Nav, NavDropdown, Navbar, Offcanvas, Form, Button, Row, Col } from "react-bootstrap"
+import { Container, Nav, NavDropdown, Navbar, Offcanvas, Row, Col } from "react-bootstrap"
+import { LinkContainer } from 'react-router-bootstrap'
 import { IoCartOutline, IoPersonOutline } from "react-icons/io5"
 
 const Header = () => {
@@ -21,7 +22,9 @@ const Header = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="pe-3">
-                        <Nav.Link href="/about">ABOUT</Nav.Link>
+                            <LinkContainer to='/about'>
+                                <Nav.Link>ABOUT</Nav.Link>
+                            </LinkContainer>
                         <NavDropdown
                             title="PRODUCTS"
                             id={`offcanvasNavbarDropdown-expand-md`}
@@ -36,18 +39,25 @@ const Header = () => {
                     </Navbar.Offcanvas>
                 </Col>
                 <Col className="d-flex justify-content-center">
-                    <Navbar.Brand href="/">
-                        <img src={require('../images/logo_pink.png')}/>
-                    </Navbar.Brand>
+                    <LinkContainer to='/'>
+                        <Navbar.Brand>
+                            <img src={require('../images/logo_pink.png')}/>
+                        </Navbar.Brand>
+                    </LinkContainer>
+                    
                 </Col>
                 <Col className="d-flex justify-content-end">
                     <Nav className="flex-row">
-                        <Nav.Link href="/login">
-                            <IoPersonOutline size={20}/>
-                        </Nav.Link>
-                        <Nav.Link href="/cart">
-                            <IoCartOutline size={20}/>
-                        </Nav.Link>
+                        <LinkContainer to='/login'>
+                            <Nav.Link>
+                                <IoPersonOutline size={20}/>
+                            </Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/cart'>
+                            <Nav.Link>
+                                <IoCartOutline size={20}/>
+                            </Nav.Link>
+                        </LinkContainer>
                     </Nav>
                 </Col>
             </Row>
