@@ -1,6 +1,5 @@
-const breads = [
+const products = [
     {
-      _id: '1',
       name: 'White Bread',
       image: '/images/white_bread.jpg',
       description:
@@ -12,7 +11,6 @@ const breads = [
       numReviews: 0,
     },
     {
-      _id: '2',
       name: 'Sourdough Bread',
       image: '/images/sourdough_bread.jpg',
       description:
@@ -24,7 +22,6 @@ const breads = [
       numReviews: 0,
     },
     {
-      _id: '3',
       name: 'Croissant',
       image: '/images/croissant.jpg',
       description:
@@ -37,4 +34,4 @@ const breads = [
     },
   ]
   
-  export default breads
+  export default products
