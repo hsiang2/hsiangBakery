@@ -9,7 +9,7 @@ import { listProductDetail } from "../redux/productActions"
 import Loader from "../components/Loader"
 import Message from "../components/Message"
 
-const ProductDetailScreen = (history) => {
+const ProductDetailScreen = () => {
     const [qty, setQty] = useState(1)
     const dispatch = useDispatch()
     const params = useParams()
