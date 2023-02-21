@@ -12,6 +12,9 @@ import orderCreateReducer from './orderCreate'
 import orderDetailsReducer from './orderDetails'
 import orderPayReducer from './orderPay'
 import orderListMyReducer from './orderListMyReducer'
+import userListReducer from './userListReducer'
+import userDeleteReducer from './userDeleteReducer'
+import userUpdateReducer from './userUpdateReducer'
 
 const middleware = [thunk]
 
@@ -24,10 +27,13 @@ export default configureStore({
         userRegister: userRegisterReducer,
         userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
+        userList: userListReducer,
+        userDelete: userDeleteReducer,
+        userUpdate: userUpdateReducer,
         orderCreate: orderCreateReducer,
         orderDetails: orderDetailsReducer,
         orderPay: orderPayReducer,
-        orderListMy: orderListMyReducer
+        orderListMy: orderListMyReducer,
     },
     preloadedState: {},
     middleware
