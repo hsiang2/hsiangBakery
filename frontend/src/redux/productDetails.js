@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const productDetailSlice = createSlice({
-    name: "productDetail",
+export const productDetailsSlice = createSlice({
+    name: "productDetails",
     initialState: {
         product: { reviews: [] }
     },
@@ -18,5 +18,5 @@ export const productDetailSlice = createSlice({
     }
 })
 
-export const { request, success, fail } = productDetailSlice.actions
-export default productDetailSlice.reducer
+export const { request, success, fail } = productDetailsSlice.actions
+export default productDetailsSlice.reducer

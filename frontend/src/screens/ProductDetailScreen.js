@@ -15,8 +15,8 @@ const ProductDetailScreen = () => {
     const params = useParams()
     const navigate = useNavigate()
 
-    const productDetail = useSelector(state => state.productDetail)
-    const { loading, error, product } = productDetail
+    const productDetails = useSelector(state => state.productDetails)
+    const { loading, error, product } = productDetails
 
     //const [product, setProduct] = useState({})
 

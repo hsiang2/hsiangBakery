@@ -7,14 +7,16 @@ import { useNavigate, useParams }from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { getOrderDetails, payOrder } from '../redux/orderActions'
+import { deliverOrder, getOrderDetails, payOrder } from '../redux/orderActions'
 import { orderPayReset } from '../redux/orderPay'
+import { orderDeliverReset } from '../redux/orderDeliverReducer'
 
 const OrderScreen = () => {
     
     const dispatch = useDispatch()
     const [sdkReady, setSdkReady] = useState(false)
     const params = useParams()
+    const navigate = useNavigate()
 
     const orderId = params.id 
 
@@ -24,6 +26,12 @@ const OrderScreen = () => {
 
     const orderPay = useSelector(state => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
+
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     if (!loading) {
         //Calculate prices
@@ -38,6 +46,9 @@ const OrderScreen = () => {
     }
 
     useEffect(() => {
+        if(!userInfo) {
+            navigate('/login')
+        }
         const addPayPalScript = async () => {
             //document.cookie = 'cookie2=value2; SameSite=None; Secure';
             //document.cookie = "SameSite=None; Secure"
@@ -52,8 +63,9 @@ const OrderScreen = () => {
             document.body.appendChild(script)
         }
 
-        if (successPay || !order || order._id !== orderId) {
+        if (successPay || !order || order._id !== orderId || successDeliver) {
             dispatch(orderPayReset())
+            dispatch(orderDeliverReset())
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
@@ -63,10 +75,14 @@ const OrderScreen = () => {
             setSdkReady(true)
         }
         
-    }, [order, orderId, dispatch, successPay])
+    }, [order, orderId, dispatch, successPay, successDeliver, userInfo, navigate])
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(orderId, paymentResult))
+    }
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
     }
 
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> 
@@ -90,8 +106,8 @@ const OrderScreen = () => {
                                 {order.shippingAddress.postalCode},{' '}
                                 {order.shippingAddress.country}
                             </p>
-                            {order.isDeliverd ? (
-                                <Message variant='success'>Deliverd on {order.deliverdAt}</Message>
+                            {order.isDelivered ? (
+                                <Message variant='success'>Deliverd on {order.deliveredAt}</Message>
                             ) : (
                                 <Message variant='danger'>Not Deliverd</Message>
                             )}
@@ -179,6 +195,17 @@ const OrderScreen = () => {
                                             onSuccess={successPaymentHandler}
                                         />
                                     )}
+                                </ListGroup.Item>
+                            )}
+                            {loadingDeliver && <Loader />}
+                            {userInfo && userInfo.isAdmin && order.isPaid && !order.isDeliverd && (
+                                <ListGroup.Item>
+                                    <Button
+                                        type='button'
+                                        className='btn btn-block'
+                                        onClick={deliverHandler}
+                                    >Mark As Delivered
+                                    </Button>
                                 </ListGroup.Item>
                             )}
                     </ListGroup>

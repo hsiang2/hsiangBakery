@@ -3,6 +3,8 @@ import { orderCreateRequest, orderCreateSuccess, orderCreateFail } from './order
 import { orderDetailsRequest, orderDetailsSuccess, orderDetailsFail } from './orderDetails'
 import { orderPayRequest, orderPaySuccess, orderPayFail } from './orderPay'
 import { orderListMyRequest, orderListMySuccess, orderListMyFail } from './orderListMyReducer'
+import { orderListFail, orderListRequest, orderListSuccess } from './orderListReducer'
+import { orderDeliverFail, orderDeliverRequest, orderDeliverSuccess } from './orderDeliverReducer'
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
@@ -69,6 +71,27 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     }
 }
 
+export const deliverOrder = (order) => async (dispatch, getState) => {
+    try {
+        dispatch(orderDeliverRequest())
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.put(`/api/orders/${order._id}/deliver`, {}, config)
+
+        dispatch(orderDeliverSuccess(data))
+    } catch (err) {
+        const error = err.response && err.response.data.message ? err.response.data.message:err.message
+        dispatch(orderDeliverFail(error))
+    }
+}
+
 export const listMyOrders = () => async (dispatch, getState) => {
     try {
         dispatch(orderListMyRequest())
@@ -87,6 +110,27 @@ export const listMyOrders = () => async (dispatch, getState) => {
     } catch (err) {
         const error = err.response && err.response.data.message ? err.response.data.message:err.message
         dispatch(orderListMyFail(error))
+    }
+}
+
+export const listOrders = () => async (dispatch, getState) => {
+    try {
+        dispatch(orderListRequest())
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.get(`/api/orders`, config)
+
+        dispatch(orderListSuccess(data))
+    } catch (err) {
+        const error = err.response && err.response.data.message ? err.response.data.message:err.message
+        dispatch(orderListFail(error))
     }
 }
 
