@@ -4,6 +4,7 @@ import { request, success, fail } from './productDetails'
 import { productDeleteFail, productDeleteRequest, productDeleteSuccess } from './productDeleteReducer'
 import { productCreateFail, productCreateRequest, productCreateSuccess } from './productCreateReducer'
 import { productUpdateFail, productUpdateRequest, productUpdateSuccess } from './productUpdateReducer'
+import { productCreateReviewFail, productCreateReviewRequest, productCreateReviewSuccess } from './productReviewCreateReducer'
 
 export const listProducts = () => async (dispatch) => {
     try {
@@ -90,5 +91,27 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     } catch (err) {
         const error = err.response && err.response.data.message ? err.response.data.message:err.message
         dispatch(productUpdateFail(error))
+    }
+}
+
+export const createProductReview = (productId, review) => async (dispatch, getState) => {
+    try {
+        dispatch(productCreateReviewRequest())
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.post(`/api/products/${productId}/reviews`, review, config)
+
+        dispatch(productCreateReviewSuccess())
+    } catch (err) {
+        const error = err.response && err.response.data.message ? err.response.data.message:err.message
+        dispatch(productCreateReviewFail(error))
     }
 }

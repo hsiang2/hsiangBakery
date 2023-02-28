@@ -20,6 +20,7 @@ import productCreateReducer from './productCreateReducer'
 import productUpdateReducer from './productUpdateReducer'
 import orderListReducer from './orderListReducer'
 import orderDeliverReducer from './orderDeliverReducer'
+import productReviewCreateReducer from './productReviewCreateReducer'
 
 const middleware = [thunk]
 
@@ -30,6 +31,7 @@ export default configureStore({
         productDelete: productDeleteReducer,
         productCreate: productCreateReducer,
         productUpdate: productUpdateReducer,
+        productReviewCreate: productReviewCreateReducer,
         cart: cartReducer,
         userLogin: userLoginReducer,
         userRegister: userRegisterReducer,
