@@ -21,6 +21,7 @@ import productUpdateReducer from './productUpdateReducer'
 import orderListReducer from './orderListReducer'
 import orderDeliverReducer from './orderDeliverReducer'
 import productReviewCreateReducer from './productReviewCreateReducer'
+import productTopRatedReducer from './productTopRatedReducer'
 
 const middleware = [thunk]
 
@@ -32,6 +33,7 @@ export default configureStore({
         productCreate: productCreateReducer,
         productUpdate: productUpdateReducer,
         productReviewCreate: productReviewCreateReducer,
+        productTopRated: productTopRatedReducer ,
         cart: cartReducer,
         userLogin: userLoginReducer,
         userRegister: userRegisterReducer,

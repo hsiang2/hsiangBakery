@@ -5,11 +5,12 @@ import { productDeleteFail, productDeleteRequest, productDeleteSuccess } from '.
 import { productCreateFail, productCreateRequest, productCreateSuccess } from './productCreateReducer'
 import { productUpdateFail, productUpdateRequest, productUpdateSuccess } from './productUpdateReducer'
 import { productCreateReviewFail, productCreateReviewRequest, productCreateReviewSuccess } from './productReviewCreateReducer'
+import { productTopFail, productTopRequest, productTopSuccess } from './productTopRatedReducer'
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
     try {
         dispatch(productsRequest())
-        const { data } = await axios.get('/api/products')
+        const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
         dispatch(productsSuccess(data))
 
     } catch (err) {
@@ -113,5 +114,17 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
     } catch (err) {
         const error = err.response && err.response.data.message ? err.response.data.message:err.message
         dispatch(productCreateReviewFail(error))
+    }
+}
+
+export const listTopProducts = () => async (dispatch) => {
+    try {
+        dispatch(productTopRequest())
+        const { data } = await axios.get(`/api/products/top`)
+        dispatch(productTopSuccess(data))
+
+    } catch (err) {
+        const error = err.response && err.response.data.message ? err.response.data.message:err.message
+        dispatch(productTopFail(error))
     }
 }

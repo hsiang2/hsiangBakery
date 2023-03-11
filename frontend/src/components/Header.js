@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { IoCartOutline, IoPersonOutline } from "react-icons/io5"
 import { logout } from "../redux/userActions"
+import SearchBox from './SearchBox'
+import { Route, Routes } from "react-router-dom"
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -93,6 +95,8 @@ const Header = () => {
                     </Nav>
                 </Col>
             </Row>
+            <SearchBox />
+            
             
             
             
