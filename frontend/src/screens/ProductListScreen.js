@@ -56,11 +56,13 @@ const ProductListScreen = () => {
         <>
             <Row className='align-items-center'>
                 <Col>
-                    <h1>Products</h1>
+                    <h1 className="mt-3 mb-4">Products</h1>
                 </Col>
-                <Col className='text-right'>
-                    <Button className="my-3" onClick={createProductHandler}>
-                        <i className="fas fa-plus"></i>Create Product
+                <Col className='d-flex justify-content-end'>
+                    <Button className="my-3 p-0" onClick={createProductHandler}>
+                        <div className="customButton">
+                            <i className="fas fa-plus"></i><h6>CREATE PRODUCT</h6>
+                        </div>
                     </Button>
                 </Col>
             </Row>
@@ -74,36 +76,38 @@ const ProductListScreen = () => {
                         <Table striped bordered hover responsive className="table-sm">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>PRICE</th>
-                                    <th>CATEGORY</th>
+                                    <th className="p-3">ID</th>
+                                    <th className="p-3">NAME</th>
+                                    <th className="p-3">PRICE</th>
+                                    <th className="p-3">CATEGORY</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {products.map((product) => (
                                     <tr key={product._id}>
-                                        <td>{product._id}</td>
-                                        <td>{product.name}</td>
-                                        <td>
+                                        <td className="p-3">{product._id}</td>
+                                        <td className="p-3">{product.name}</td>
+                                        <td className="p-3">
                                             ${product.price}
                                         </td>
-                                        <td>
+                                        <td className="p-3">
                                             {product.category}
                                         </td>
-                                        <td>
-                                            <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                                                <Button variant="light" className="btn-sm">
-                                                    <i className="fas fa-edit"></i>
+                                        <td className="p-3">
+                                            <div className="d-flex justify-content-around">
+                                                <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                                                    <Button variant="light" className="btn-sm">
+                                                        <i className="fas fa-edit"></i>
+                                                    </Button>
+                                                </LinkContainer>
+                                                <Button 
+                                                    variant="danger" className="btn-sm" 
+                                                    onClick={() => deleteHandler(product._id)}
+                                                >
+                                                    <i className="fas fa-trash"></i>
                                                 </Button>
-                                            </LinkContainer>
-                                            <Button 
-                                                variant="danger" className="btn-sm" 
-                                                onClick={() => deleteHandler(product._id)}
-                                            >
-                                                <i className="fas fa-trash"></i>
-                                            </Button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

@@ -86,13 +86,13 @@ const OrderScreen = () => {
     }
 
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> 
-        : <>
-            <h1>Order {order._id}</h1>
+        : <div>
+            <h3 className='my-4'>Order {order._id}</h3>
             <Row>
                 <Col md={8}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
+                            <h3 className='mb-3'>Shipping</h3>
                             <p>
                                 <strong>Name: </strong> {order.user.name}
                             </p>
@@ -114,7 +114,7 @@ const OrderScreen = () => {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Payment Method</h2>
+                            <h3 className='mb-3'>Payment Method</h3>
                             <p>
                                 <strong>Method:</strong>
                                 {order.paymentMethod}
@@ -127,14 +127,14 @@ const OrderScreen = () => {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Order Items</h2>
+                            <h3 className='mb-3'>Order Items</h3>
                             {order.orderItems.length === 0 
                                 ? <Message>Order is empty</Message>
                                 : <ListGroup variant='flush'>
                                     {order.orderItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
-                                            <Row>
-                                                <Col md={1}>
+                                            <Row className='d-flex align-items-center'>
+                                                <Col xs={2}>
                                                     <Image 
                                                         src={item.image} 
                                                         alt={item.name}
@@ -146,7 +146,7 @@ const OrderScreen = () => {
                                                         {item.name}
                                                     </Link>
                                                 </Col>
-                                                <Col md={4}>
+                                                <Col xs={5}>
                                                     {item.qty} x ${item.price} = ${item.qty * item.price}
                                                 </Col>
                                             </Row>
@@ -160,7 +160,7 @@ const OrderScreen = () => {
                 <Col md={4}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Order Summary</h2>
+                            <h3>Order Summary</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Row>
@@ -211,7 +211,7 @@ const OrderScreen = () => {
                     </ListGroup>
                 </Col>
             </Row>
-        </>
+        </div>
 }
 
 export default OrderScreen

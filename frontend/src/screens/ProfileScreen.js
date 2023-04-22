@@ -61,13 +61,13 @@ const ProfileScreen = () => {
 
     return <Row>
         <Col md={3}>
-            <h2>User Profile</h2>
+            <h2 className="mt-3 mb-4">User Profile</h2>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {success && <Message variant='success'>Profile Updated</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name'>
+                <Form.Group controlId='name' className='formInput mb-3'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         type='name'
@@ -76,7 +76,7 @@ const ProfileScreen = () => {
                         onChange={(e) => setName(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='email'>
+                <Form.Group controlId='email' className='formInput mb-3'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
                         type='email'
@@ -85,7 +85,7 @@ const ProfileScreen = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='password'>
+                <Form.Group controlId='password' className='formInput mb-3'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type='password'
@@ -94,7 +94,7 @@ const ProfileScreen = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     ></Form.Control>
                 </Form.Group>
-                <Form.Group controlId='confirmPassword'>
+                <Form.Group controlId='confirmPassword' className='formInput mb-3'>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
                         type='password'
@@ -104,48 +104,50 @@ const ProfileScreen = () => {
                     ></Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
-                    Update
+                <Button type='submit' className='p-0 mt-5'>
+                <div className="customButton">
+                    <h6>UPDATE</h6>
+                </div>
                 </Button>
             </Form>
         </Col>
         <Col md={9}>
-            <h2>My Orders</h2>
+            <h2 className="mt-3 mb-4">My Orders</h2>
             {loadingOrders ? 
             <Loader /> : errorOrders ? 
             <Message variant='danger'>{errorOrders}</Message> : (
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>DATE</th>
-                            <th>TOTAL</th>
-                            <th>PAID</th>
-                            <th>DELIVERED</th>
+                            <th className="p-3">ID</th>
+                            <th className="p-3">DATE</th>
+                            <th className="p-3">TOTAL</th>
+                            <th className="p-3">PAID</th>
+                            <th className="p-3">DELIVERED</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map((order) => (
                             <tr key={order._id}>
-                                <td>{order._id}</td>
-                                <td>{order.createdAt.substring(0, 10)}</td>
-                                <td>{order.totalPrice}</td>
-                                <td>
+                                <td className="p-3">{order._id}</td>
+                                <td className="p-3">{order.createdAt.substring(0, 10)}</td>
+                                <td className="p-3">{order.totalPrice}</td>
+                                <td className="p-3">
                                     {order.isPaid ? (
                                         order.paidAt.substring(0, 10)
                                     ) : (
-                                        <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        <i className='fas fa-times' style={{ color: '#E08D6A' }}></i>
                                     )}
                                 </td>
-                                <td>
+                                <td className="p-3">
                                     {order.isDelivered ? (
                                         order.deliveredAt.substring(0, 10)
                                     ) : (
-                                        <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        <i className='fas fa-times' style={{ color: '#E08D6A' }}></i>
                                     )}
                                 </td>
-                                <td>
+                                <td className="p-3">
                                     <LinkContainer to={`/order/${order._id}`}>
                                         <Button className='btn-sm' variant='light'>Details</Button>
                                     </LinkContainer>

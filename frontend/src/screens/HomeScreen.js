@@ -1,57 +1,34 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useParams } from 'react-router-dom'
-import { Row, Col } from "react-bootstrap"
-//import axios from 'axios'
-import Product from "../components/Product"
-import Message from "../components/Message"
-import Loader from "../components/Loader"
-import { listProducts } from "../redux/productActions"
-import Paginate from "../components/Paginate"
 import ProductCarousel from "../components/ProductCarousel"
 import Meta from "../components/Meta"
 import { Link } from "react-router-dom"
 
 const HomeScreen = () => {
-    //const [products, setProducts] = useState([])
-    const params = useParams()
-    const keyword = params.keyword
-    const pageNumber = params.pageNumber || 1
-
-    const dispatch = useDispatch()
-
-    const productList = useSelector(state => state.productList)
-    const { loading, error, products, page, pages } = productList
-
-    useEffect(() => {
-        dispatch(listProducts(keyword, pageNumber))
-        // const fetchProducts = async () => {
-        //     const { data } = await axios.get('/api/products')
-
-        //     setProducts(data)
-        // }
-
-        // fetchProducts()
-    }, [dispatch, keyword, pageNumber])
 
     return (
         <>
             <Meta />
-            {!keyword ? <ProductCarousel /> 
-                : <Link to='/' className='btn btn-light'>Go Back</Link>}
-            <h1>Breads</h1>
-            {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : 
-                <>
-                    <Row>
-                        {products.map((product) => (
-                            <Col sm={6} md={3}>
-                                <Product product={product}/>
-                            </Col>
-                        ))}
-                    </Row>
-                    <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''}/>
-                </>
-            }
+            <h1 className="text-center fontAlegreya mt-md-3 mt-md-5">Hsiang Bakery</h1>
+            <h6 className="text-center fontCorinthia">Freshly baked everyday.</h6>
+            <img className="banner" src={require('../images/image_banner.png')} />
+            <Link to={`/`}>
+                <div className="customButton">
+                    <h6>SHOP NOW</h6>
+                </div>
+            </Link>
+            <div style={{marginTop: "8rem", marginBottom: "8rem"}}>
+                <h1 className="text-center fontAlegreya">Customer Favorites</h1>
+                <ProductCarousel /> 
+            </div>
+            <div className="mb-5">
+                <h1 className="text-center fontAlegreya">About Us</h1>
+                <img className="imgAbout" src={require('../images/image_about.png')} />
+                <Link to={`/about`}>
+                <div className="customButton">
+                    <h6>EXPLORE MORE</h6>
+                </div>
+                </Link>
+            </div>
+
         </>
     )
 }

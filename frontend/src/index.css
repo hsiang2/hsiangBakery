@@ -1,3 +1,353 @@
+/*Header*/
+header {
+  background-color: #3B4947;
+  /* color: #ECD9CE; */
+}
+
+body .nav-link, body .navbar-toggler, 
+body .navbar, body .nav-link:hover, body .nav-link:focus,
+body .navbar-nav .nav-link.active, 
+body .navbar-nav .show>.nav-link,
+body .nav, body nav:hover, body nav:active, body nav:focus {
+  color: #ECD9CE;
+}
+
+header .navbar {
+  background-color: #3B494790
+}
+
+header .navbar-toggler,
+header .navbar-toggler:focus,
+header .navbar-toggler:active,
+header .navbar-toggler-icon:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+header .dropdown-item {
+  color: #22312E;
+}
+
+
+header .btn-close {
+  color: #ECD9CE;
+}
+
+.customOffcanvas {
+  background-color:#3B4947; 
+  color: #ECD9CE;
+}
+
+@media (min-width: 768px) {
+  .customOffcanvas {
+    background-color: transparent;
+  }
+}
+
+.banner {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 22rem;
+  margin: 2rem auto 3rem;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    
+    width: 85%;
+    height: 24rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .banner {
+    width: 55%;
+  }
+}
+
+.imgAbout {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 15rem;
+  margin: 2rem auto 3rem;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .imgAbout {
+    
+    width: 90%;
+    height: 15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .imgAbout {
+    width: 65%;
+  }
+}
+
+.fontCorinthia {
+  font-family: 'Corinthia', cursive;
+}
+
+.fontAlegreya {
+  font-family: 'Alegreya SC', serif;
+}
+
+h2, h1 {
+  font-family: 'Alegreya SC', serif;
+}
+
+.customButton {
+  width: 12.5rem;
+  height: 3.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #ECD9CE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.carouselContainer {
+  max-width: 750px;
+  margin: auto;
+}
+
+.searchBox {
+  display: flex;
+  border-bottom: 2px solid #ECD9CE;
+}
+
+main .form-control, main .form-control:focus, main .btn, main .btn:hover, main .btn.btn-primary:active {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: #ECD9CE;
+}
+
+main .form-control::placeholder {
+  color: #ECD9CE50;
+}
+
+main .breadcrumb {
+  margin: 0;
+}
+
+.navBar {
+  display: none;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.navItem {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  cursor: pointer;
+
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.navItem:hover {
+
+  opacity: 1;
+  text-shadow: 0px 0px 30px #ECD9CE;
+}
+
+main .active>.page-link, main .page-link, main .page-link:hover {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  box-shadow: none;
+  color: #ECD9CE;
+  opacity: 1;
+}
+
+main .page-link {
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+main .page-link:hover {
+  opacity: 0.7;
+}
+
+.customButton h6 {
+  margin-bottom: 0;
+}
+
+main .form-select {
+  color: #314642;
+  background-color: #F6EFEA;
+  padding-right: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill{
+  -webkit-text-fill-color: #ECD9CE !important;
+}
+
+main .form-check-input:checked {
+  background-color: #DAC3B6;
+  border-color: #DAC3B6;
+}
+
+/*Main*/
 main {
   min-height: 80vh;
+  background-color: #3B4947;
+  color: #ECD9CE
 }
+
+body {
+  font-family: 'Alegreya SC', serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body a, body a:hover {
+  color: #ECD9CE;
+  text-decoration: none;
+}
+
+main ul {
+  margin: 0;
+}
+
+footer {
+  background-color: #DAC3B6;
+  color: #314642;
+  font-family: 'Alegreya SC', serif;
+}
+
+main .container {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.productImage {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 21rem;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .productImage {
+    height: 21rem;
+    width: 18rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .productImage {
+    height: 25rem;
+    width: 21.5rem;
+  }
+}
+
+main .alert-info {
+  color: #ECD9CE90;
+  background-color: transparent;
+  border: none;
+}
+
+main .alert-danger {
+  background-color: transparent;
+  color: #ECD9CE90;
+  border-color: #22312E;
+}
+
+main .alert-success {
+  background-color: #F6EFEA90;
+  border-color: #F6EFEA;
+  color: #314642;
+}
+
+main .list-group-item {
+  background-color: transparent;
+  color: #ECD9CE;
+  border-color: #22312E;
+}
+main .list-group {
+  border-radius: 3px;
+}
+
+.formInput {
+  border-bottom: 2px solid #DAC3B6;
+}
+
+main .table, 
+main .table-striped>tbody>tr:nth-of-type(odd)>* ,
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  color: #ECD9CE;
+  border-color: #DAC3B680;
+}
+
+main .btn.disabled, main .btn:disabled, main fieldset:disabled .btn {
+  background-color: transparent;
+  color: #ECD9CE60;
+}
+
+.react-multi-carousel-dot button {
+  background-color: #ECD9CE60;
+
+}
+
+main .react-multi-carousel-dot--active button {
+  background: #ECD9CE;
+}
+
+main .react-multiple-carousel__arrow--left {
+  left: calc(4% + 1px);
+  bottom: 0;
+}
+
+main .react-multiple-carousel__arrow--right {
+  right: calc(4% + 1px);
+  bottom: 0;
+}
+main .react-multiple-carousel__arrow {
+  border: 2px solid #ECD9CE;
+  background: transparent;
+  min-width: 43px;
+  min-height: 43px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+main .react-multiple-carousel__arrow:hover {
+  background: #ECD9CE80;
+}
+
+main .react-multiple-carousel__arrow::before {
+  color: #ECD9CE;
+}
+
+
+
+ 

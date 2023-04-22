@@ -1,10 +1,8 @@
 import { Container, Nav, NavDropdown, Navbar, Offcanvas, Row, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { IoCartOutline, IoPersonOutline } from "react-icons/io5"
+import { IoCartOutline, IoPersonOutline, IoMenuOutline } from "react-icons/io5"
 import { logout } from "../redux/userActions"
-import SearchBox from './SearchBox'
-import { Route, Routes } from "react-router-dom"
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -17,34 +15,34 @@ const Header = () => {
 
     return <header>
         <>
-        <Navbar expand='md' className="mb-3">
+        <Navbar expand='md' fixed='top'>
           <Container fluid className="d-block">
-            <Row>
+            <Row className="px-md-5">
                 <Col>
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} >
+                        <IoMenuOutline size={20} />
+                    </Navbar.Toggle>
                     <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-md`}
                     aria-labelledby={`offcanvasNavbarLabel-expand-md`}
-                    //placement="end"
                     >
-                    <Offcanvas.Header closeButton>
-                        {/* <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
-                        Offcanvas
-                        </Offcanvas.Title> */}
+                    <Offcanvas.Header  className="customOffcanvas" closeButton>
                     </Offcanvas.Header>
-                    <Offcanvas.Body>
+                    <Offcanvas.Body className="customOffcanvas">
                         <Nav className="pe-3">
-                            <LinkContainer to='/about'>
+                            <LinkContainer to='/about' className='mx-2'>
                                 <Nav.Link>ABOUT</Nav.Link>
                             </LinkContainer>
                         <NavDropdown
                             title="PRODUCTS"
                             id={`offcanvasNavbarDropdown-expand-md`}
+                            className='mx-2'
                         >
-                            <NavDropdown.Item href="/breads">BREADS</NavDropdown.Item>
-                            <NavDropdown.Item href="/cakes">CAKES</NavDropdown.Item>
-                            <NavDropdown.Item href="/pastries">PASTRIES</NavDropdown.Item>
-                            <NavDropdown.Item href="/biscuits">BISCUITS</NavDropdown.Item>
+                            <NavDropdown.Item href="/product/category/all">ALL</NavDropdown.Item>
+                            <NavDropdown.Item href="/product/category/breads">BREADS</NavDropdown.Item>
+                            <NavDropdown.Item href="/product/category/cakes">CAKES</NavDropdown.Item>
+                            <NavDropdown.Item href="/product/category/pastries">PASTRIES</NavDropdown.Item>
+                            <NavDropdown.Item href="/product/category/biscuits">BISCUITS</NavDropdown.Item>
                         </NavDropdown>
                         </Nav>
                     </Offcanvas.Body>
@@ -53,7 +51,7 @@ const Header = () => {
                 <Col className="d-flex justify-content-center">
                     <LinkContainer to='/'>
                         <Navbar.Brand>
-                            <img src={require('../images/logo_pink.png')}/>
+                            <img src={require('../images/logo_header.png')} alt="logo" />
                         </Navbar.Brand>
                     </LinkContainer>
                     
@@ -66,69 +64,39 @@ const Header = () => {
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                 </LinkContainer>
                                 <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                                {userInfo.isAdmin && (
+                                    <>
+                                        <NavDropdown.Divider />
+                                        <LinkContainer to='/admin/userlist'>
+                                            <NavDropdown.Item>Users</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to='/admin/productlist'>
+                                            <NavDropdown.Item>Products</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to='/admin/orderlist'>
+                                            <NavDropdown.Item>Orders</NavDropdown.Item>
+                                        </LinkContainer>
+                                    </>
+                                )}
                             </NavDropdown>
                         ) : 
-                            <LinkContainer to='/login'>
+                            <LinkContainer to='/login' className='mx-2'>
                                 <Nav.Link>
                                     <IoPersonOutline size={20}/>
                                 </Nav.Link>
                             </LinkContainer>
                         }
-                        {userInfo && userInfo.isAdmin && (
-                            <NavDropdown title='Admin' id='adminmenu'>
-                                <LinkContainer to='/admin/userlist'>
-                                    <NavDropdown.Item>Users</NavDropdown.Item>
-                                </LinkContainer>
-                                <LinkContainer to='/admin/productlist'>
-                                    <NavDropdown.Item>Products</NavDropdown.Item>
-                                </LinkContainer>
-                                <LinkContainer to='/admin/orderlist'>
-                                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                                </LinkContainer>
-                            </NavDropdown>
-                        )}
-                        <LinkContainer to='/cart'>
+                        <LinkContainer to='/cart' className='mx-2'>
                             <Nav.Link>
                                 <IoCartOutline size={20}/>
                             </Nav.Link>
                         </LinkContainer>
                     </Nav>
                 </Col>
-            </Row>
-            <SearchBox />
-            
-            
-            
-            
-            
-            
+            </Row>           
           </Container>
         </Navbar>
-    </>
-        {/* <Navbar expand="lg">
-            <Container>
-                <Navbar.Brand href="/">
-                    <img src={require('../images/logo_pink.png')}/>
-                </Navbar.Brand>
-                <Nav.Link  href="#link">
-                    <IoCartOutline size={20}/>
-                </Nav.Link>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav>
-                        <NavDropdown title="PRODUCTS" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">BREADS</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">CAKES</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">PASTRIES</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">BISCUITS</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="#link">ABOUT</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-            
-        </Navbar> */}
-        
+    </> 
     </header>
 }
 

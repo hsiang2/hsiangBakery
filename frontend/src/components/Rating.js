@@ -1,6 +1,7 @@
 const Rating = ({ value, text, color }) => {
     return (
         <div className="rating">
+    
             <span>
                 <i
                     style={{ color }}
@@ -61,13 +62,13 @@ const Rating = ({ value, text, color }) => {
                     }
                 ></i>
             </span>
-            <span>{text && text}</span>
+            <span className="m-3">{text && text}</span>
         </div>
     )
 }
 
 Rating.defaultProps = {
-    color: '#f8e825',
+    color: '#F6EFEA',
 }
 
 export default Rating

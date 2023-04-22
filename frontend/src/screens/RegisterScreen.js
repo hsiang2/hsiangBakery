@@ -39,12 +39,12 @@ const RegisterScreen = () => {
     }
 
     return <FormContainer>
-        <h1>Sign Up</h1>
+        <h1 className='mb-5'>Sign Up</h1>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
+            <Form.Group controlId='name' className='formInput mb-3'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                     type='name'
@@ -53,7 +53,7 @@ const RegisterScreen = () => {
                     onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='email'>
+            <Form.Group controlId='email' className='formInput mb-3'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
                     type='email'
@@ -62,7 +62,7 @@ const RegisterScreen = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='password'>
+            <Form.Group controlId='password' className='formInput mb-3'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     type='password'
@@ -71,7 +71,7 @@ const RegisterScreen = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
             </Form.Group>
-            <Form.Group controlId='confirmPassword'>
+            <Form.Group controlId='confirmPassword' className='formInput mb-3'>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                     type='password'
@@ -81,15 +81,17 @@ const RegisterScreen = () => {
                 ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
-                Register
+            <Button type='submit' className='p-0 mt-5 mb-3'>
+                <div className="customButton">
+                    <h6>REGISTER</h6>
+                </div>
             </Button>
         </Form>
         <Row className='py-3'>
             <Col>
-                Have an Account?{' '}
+                <span style={{color: "#ECD9CE90"}}>Have an Account?{' '}</span>
                 <Link to={redirect ? `/login?redirect=${redirect}`: '/login'}>
-                    Login
+                    LOGIN
                 </Link>
             </Col>
         </Row>

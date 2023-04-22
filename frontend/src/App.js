@@ -18,6 +18,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import ProductScreen from './screens/ProductScreen';
 
 function App() {
   return (
@@ -33,7 +34,16 @@ function App() {
             <Route path='/login' element={<LoginScreen />}/>
             <Route path='/register' element={<RegisterScreen />}/>
             <Route path='/profile' element={<ProfileScreen />}/>
-            <Route path='/product/:id' element={<ProductDetailScreen />}/>
+            {/* <Route path='/product/:id' element={<ProductDetailScreen />} exact/> */}
+            {/* <Route path='/product/:category' element={<ProductScreen />} exact/> */}
+            <Route path='/product/id/:id' element={<ProductDetailScreen />}/>
+            <Route path='/product/category/:category' element={<ProductScreen />} exact/>
+
+            
+            <Route path='/product/category/:category/search/:keyword' element={<ProductScreen />} exact/>
+            <Route path='/product/category/:category/page/:pageNumber' element={<ProductScreen />} exact/>
+            <Route path='/product/category/:category/search/:keyword/page/:pageNumber' element={<ProductScreen />} exact/>
+            
             <Route path='/cart/:id?' element={<CartScreen />}/>
             <Route path='/admin/userlist' element={<UserListScreen />}/>
             <Route path='/admin/user/:id/edit' element={<UserEditScreen />}/>
@@ -41,9 +51,10 @@ function App() {
             <Route path='/admin/productlist/:pageNumber' element={<ProductListScreen />} exact/>
             <Route path='/admin/product/:id/edit' element={<ProductEditScreen />}/>
             <Route path='/admin/orderlist' element={<OrderListScreen />}/>
-            <Route path='/search/:keyword' element={<HomeScreen />} exact/>
+
+            {/* <Route path='/search/:keyword' element={<HomeScreen />} exact/>
             <Route path='/page/:pageNumber' element={<HomeScreen />} exact/>
-            <Route path='/search/:keyword/page/:pageNumber' element={<HomeScreen />} exact/>
+            <Route path='/search/:keyword/page/:pageNumber' element={<HomeScreen />} exact/> */}
             <Route path='/' element={<HomeScreen />} exact/>
           </Routes>
         </Container>

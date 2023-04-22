@@ -7,10 +7,10 @@ import { productUpdateFail, productUpdateRequest, productUpdateSuccess } from '.
 import { productCreateReviewFail, productCreateReviewRequest, productCreateReviewSuccess } from './productReviewCreateReducer'
 import { productTopFail, productTopRequest, productTopSuccess } from './productTopRatedReducer'
 
-export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '', category = "all") => async (dispatch) => {
     try {
         dispatch(productsRequest())
-        const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+        const { data } = await axios.get(`/api/products/category/${category}?keyword=${keyword}&pageNumber=${pageNumber}`)
         dispatch(productsSuccess(data))
 
     } catch (err) {

@@ -55,8 +55,8 @@ const PlaceOrderScreen = () => {
             <Row>
                 <Col md={8}>
                     <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <h2>Shipping</h2>
+                        <ListGroup.Item className='mb-4'>
+                            <h2 className='mb-3'>Shipping</h2>
                             <p>
                                 <strong>Address:</strong>
                                 {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
@@ -65,14 +65,14 @@ const PlaceOrderScreen = () => {
                             </p>
                         </ListGroup.Item>
 
-                        <ListGroup.Item>
-                            <h2>Payment Method</h2>
+                        <ListGroup.Item className='mb-4'>
+                            <h2 className='mb-3'>Payment Method</h2>
                             <strong>Method:</strong>
                             {cart.paymentMethod}
                         </ListGroup.Item>
 
-                        <ListGroup.Item>
-                            <h2>Order Items</h2>
+                        <ListGroup.Item className='mb-4'>
+                            <h2 className='mb-3'>Order Items</h2>
                             {cart.cartItems.length === 0 
                                 ? <Message>Your cart is empty</Message>
                                 : <ListGroup variant='flush'>
@@ -104,7 +104,7 @@ const PlaceOrderScreen = () => {
                 </Col>
                 <Col md={4}>
                     <ListGroup variant='flush'>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='mb-2'>
                             <h2>Order Summary</h2>
                         </ListGroup.Item>
                         <ListGroup.Item>
@@ -113,13 +113,13 @@ const PlaceOrderScreen = () => {
                                 <Col>${cart.itemsPrice}</Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='mb-2'>
                             <Row>
                                 <Col>Shipping</Col>
                                 <Col>${cart.shippingPrice}</Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='mb-2'>
                             <Row>
                                 <Col>Tax</Col>
                                 <Col>${cart.taxPrice}</Col>
@@ -131,20 +131,21 @@ const PlaceOrderScreen = () => {
                                 <Col>${cart.totalPrice}</Col>
                             </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
+                        <ListGroup.Item className='mb-2'>
                             {error && <Message variant='danger'>{error}</Message>}
                         </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Button
-                                type='button'
-                                className='btn-block'
-                                disabled={cart.cartItems === 0}
-                                onClick={placeOrderHandler}
-                            >
-                                Place Order
-                            </Button>
-                        </ListGroup.Item>
                     </ListGroup>
+                    <Button
+                        type='button'
+                        className='btn-block'
+                        disabled={cart.cartItems === 0}
+                        onClick={placeOrderHandler}
+                    >
+                        <div className="customButton">
+                            <h6>PLACE ORDER</h6>
+                        </div>
+                        
+                    </Button>
                 </Col>
             </Row>
         </>

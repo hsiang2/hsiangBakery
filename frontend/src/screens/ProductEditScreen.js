@@ -92,71 +92,79 @@ const ProductEditScreen = () => {
                 Go Back
             </Link>
             <FormContainer>
-                <h1>Edit Product</h1>
+                <h1 className='mb-5'>Edit Product</h1>
                 {loadingUpdate && <Loader />}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
                     <Form onSubmit={submitHandler}>
-                        <Form.Group controlId='name'>
+                        <Form.Group controlId='name' className='mb-4'>
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type='name'
                                 placeholder='Enter name'
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='price'>
+                        <Form.Group controlId='price' className='mb-4'>
                             <Form.Label>Price</Form.Label>
                             <Form.Control
                                 type='number'
                                 placeholder='Enter price'
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='image'>
+                        <Form.Group controlId='image' className='mb-4'>
                             <Form.Label>Image</Form.Label>
                             <Form.Control
                                 type='text'
                                 placeholder='Enter image url'
                                 value={image}
                                 onChange={(e) => setImage(e.target.value)}
+                                className='mb-3 border-bottom'
                             ></Form.Control>
                             <Form.Control id='image-file' type='file' onChange={uploadFileHandler}></Form.Control>
                             {uploading && <Loader />}
                         </Form.Group>
-                        <Form.Group controlId='countInStock'>
+                        <Form.Group controlId='countInStock' className='mb-4'>
                             <Form.Label>Count In Stock</Form.Label>
                             <Form.Control
                                 type='number'
                                 placeholder='Enter count in stock'
                                 value={countInStock}
                                 onChange={(e) => setCountInStock(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='category'>
+                        <Form.Group controlId='category' className='mb-4'>
                             <Form.Label>Category</Form.Label>
                             <Form.Control
                                 type='text'
                                 placeholder='Enter category'
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='description'>
+                        <Form.Group controlId='description' className='mb-5'>
                             <Form.Label>Description</Form.Label>
                             <Form.Control
                                 type='text'
                                 placeholder='Enter description'
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
                         
 
-                        <Button type='submit' variant='primary'>
-                            Update
+                        <Button type='submit' >
+                            <div className='customButton'>
+                                 <h6>Update</h6>
+                            </div>
                         </Button>
                     </Form>
                 )}
