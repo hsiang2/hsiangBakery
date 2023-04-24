@@ -53,30 +53,32 @@ const UserEditScreen = () => {
                 Go Back
             </Link>
             <FormContainer>
-                <h1>Edit User</h1>
+                <h1 className='mb-5'>Edit User</h1>
                 {loadingUpdate && <Loader />}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
                     <Form onSubmit={submitHandler}>
-                        <Form.Group controlId='name'>
+                        <Form.Group controlId='name' className='mb-4'>
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type='name'
                                 placeholder='Enter name'
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='email'>
+                        <Form.Group controlId='email' className='mb-4'>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
                                 type='email'
                                 placeholder='Enter email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                className='border-bottom'
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='isadmin'>
+                        <Form.Group controlId='isadmin' className='mb-5'>
                             <Form.Check
                                 type='checkbox'
                                 label='Is Admin'
@@ -86,7 +88,9 @@ const UserEditScreen = () => {
                         </Form.Group>
 
                         <Button type='submit' variant='primary'>
-                            Update
+                            <div className='customButton'>
+                                <h6> Update</h6>
+                            </div>
                         </Button>
                     </Form>
                 )}

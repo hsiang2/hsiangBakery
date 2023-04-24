@@ -204,7 +204,12 @@ const OrderScreen = () => {
                                         type='button'
                                         className='btn btn-block'
                                         onClick={deliverHandler}
-                                    >Mark As Delivered
+                                    >
+                                        <div className='customButton'>
+                                            <h6>
+                                                Mark As Delivered
+                                            </h6>
+                                        </div>
                                     </Button>
                                 </ListGroup.Item>
                             )}
