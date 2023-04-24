@@ -11,7 +11,7 @@ const getProducts = asyncHandler(async (req, res) => {
    
     //const products = await Product.find(category)
 
-    const pageSize = 8
+    const pageSize = 9
     const page = Number(req.query.pageNumber) || 1
     const keyword = req.query.keyword ? {
         name: {
