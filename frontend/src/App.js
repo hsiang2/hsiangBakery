@@ -22,7 +22,7 @@ import ProductScreen from './screens/ProductScreen';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/'>
       <Header />
       <main>
         <Container>
