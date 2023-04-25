@@ -8,6 +8,8 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 
 import bodyParser from 'body-parser'
+import cors from 'cors'
+
 
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
@@ -21,6 +23,9 @@ connectDB()
 const app = express()
 
 app.use(bodyParser.json())
+
+app.use(cors())
+
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
